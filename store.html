@@ -1,0 +1,54 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Obtain an ID token for CCP</title>
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
+
+
+
+<script language=javascript>
+
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+}
+
+function store(){
+
+    id_token = getURLParameter("id_token");
+    if (id_token == null || id_token.length == 0){ 
+        document.getElementById("message").innerHTML = "Error obtaining token from USI will retry by redirecting to the index page ";
+        setTimeout(function(){ 
+            window.location.href = "index.html" ;
+        }, 5000);  
+
+
+    }
+    else{
+        document.getElementById("message").innerHTML = "Obtained the token from USI will store the token in browser storage and redirect to the CCP page <br><br> " +id_token;
+        sessionStorage.usi_id_token = id_token;
+        setTimeout(function(){ 
+            window.location.href = "ccp.html";
+        }, 5000);  
+    }
+}
+</script>
+
+</head>
+<body onload="store()">
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Core commitment product</h1>
+        <p>This is the Intermediate page to store the token and redirect to the application</p>
+        <p id="message"> </p>
+      </div>
+    </div>
+</body>
+
+
+
