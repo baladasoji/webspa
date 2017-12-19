@@ -1,14 +1,19 @@
-pipeline {
+pipeline
+{
   agent any
-    stage('Docker') {
-      agent {
-        docker {
+  stages
+  {
+    stage('Docker')
+    {
+      agent
+      {
+        docker
+        {
           image 'docker:latest'
         }
-
       }
-
-      steps {
+      steps
+      {
         withCredentials([usernamePassword(credentialsId: 'dockerdasoji', passwordVariable: 'DKR_PASSWORD', usernameVariable: 'DKR_USERNAME')])
         {
           sh 'docker build . -t dasoji/webspa'
@@ -16,6 +21,6 @@ pipeline {
           sh 'docker push dasoji/webspa'
         }
       }
-
     }
   }
+}
