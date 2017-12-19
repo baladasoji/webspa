@@ -14,7 +14,7 @@ pipeline
       }
       steps
       {
-        withCredentials([usernamePassword(credentialsId: 'dockerdasoji', passwordVariable: 'DKR_PASSWORD', usernameVariable: 'DKR_USERNAME')])
+        withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DKR_PASSWORD', usernameVariable: 'DKR_USERNAME')])
         {
           sh 'docker build . -t dasoji/webspa'
           sh 'docker login -u $DKR_USERNAME -p $DKR_PASSWORD'
