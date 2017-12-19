@@ -1,0 +1,1 @@
+https://login.microsoftonline.com/b2cmgissandbox.onmicrosoft.com/oauth2/authorize?client_id=23c4af01-a563-4456-942d-3b877ea5c7a3&response_type=id_token&redirect_uri=http%3A%2F%2Fccp.apmoller.net%2Fstore.html&response_mode=query&scope=openid&state=12345&nonce=678910
