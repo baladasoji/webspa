@@ -1,13 +1,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="refresh" content="3;https://logint.maerskline.com/jwt/getIdToken?redirect_uri=http://ccp.apmoller.net/store.html&response_type=id_token&client_id=ccp&nonce=123456677&scope=openid&state=abcd">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Oauth Wrapper for USI</title>
+    <title>Authentication demonstration</title>
 
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
@@ -22,8 +21,17 @@
     <div class="jumbotron">
       <div class="container">
         <h1 class="display-3">Core commitment product</h1>
-        <p>This is the landing page on CCP we will now atempt to redirect to USI SSO and get the required tokens automatically in 2 seconds pls wait..</p>
-      </div>
+        <p>Choose authentication provider below</p>
+
+	 <div class="row">
+	      <div class="col-xl-6">
+		<a href="https://login.microsoftonline.com/b2cmgissandbox.onmicrosoft.com/oauth2/authorize?client_id=23c4af01-a563-4456-942d-3b877ea5c7a3&response_type=id_token&redirect_uri=http%3A%2F%2Fccp.apmoller.net%2Fstore.html&response_mode=query&scope=openid&state=12345&nonce=678910" class="btn btn-info" role="button"> Azure AD Sandbox </a>
+	      </div>
+	      <div class="col-xl-6">
+		<a href="https://logind.maerskline.com/jwt/getIdToken?redirect_uri=http://ccp.apmoller.net/store.html&response_type=id_token&client_id=ccp&nonce=123456677&scope=openid&state=abcd" class="btn btn-info" role="button"> USI Preproduction </a>
+	      </div>
+
+	 </div>
     </div>
 
   </body>

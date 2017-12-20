@@ -1,5 +1,5 @@
 FROM mhart/alpine-node:latest
-RUN apk add --no-cache curl tar bash
+#RUN apk add --no-cache curl tar bash
 MAINTAINER Bala Dasoji
 
 ARG VCS_REF
