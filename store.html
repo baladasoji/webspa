@@ -25,16 +25,16 @@ function store(){
         document.getElementById("message").innerHTML = "Error obtaining token from USI will retry by redirecting to the index page ";
         setTimeout(function(){ 
             window.location.href = "index.html" ;
-        }, 5000);  
+        }, 3000);  
 
 
     }
     else{
-        document.getElementById("message").innerHTML = "Obtained the token from USI will store the token in browser storage and redirect to the CCP page <br><br> " +id_token;
-        sessionStorage.usi_id_token = id_token;
+        document.getElementById("message").innerHTML = "Obtained the token from Auth provoder will store the token in browser storage and redirect to the CCP page <br><br> " +id_token;
+        sessionStorage.id_token = id_token;
         setTimeout(function(){ 
             window.location.href = "ccp.html";
-        }, 5000);  
+        }, 3000);  
     }
 }
 </script>
@@ -43,7 +43,7 @@ function store(){
 <body onload="store()">
     <div class="jumbotron">
       <div class="container">
-        <h1 class="display-3">Core commitment product</h1>
+        <h1 class="display-3">Commitment core product</h1>
         <p>This is the Intermediate page to store the token and redirect to the application</p>
         <p id="message"> </p>
       </div>
