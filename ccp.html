@@ -7,14 +7,14 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Oauth Wrapper for USI</title>
+    <title>Demo site for API security</title>
 
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="jumbotron.css" rel="stylesheet">
-    <script type="text/javascript" src="callrest.js"></script>
   </head>
 
   <body onload='callRest()'>
@@ -22,8 +22,13 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1 class="display-3">Core commitment product</h1>
-        <p>This dummy website demonstrates using JWT tokens for securing rest calls. The tokens are issued by USI</p>
+          <p>
+            <a href="index.html" class="btn btn-info btn-lg">
+              <span class="glyphicon glyphicon-home"></span> Home
+            </a>
+          </p> 
+        <h1 class="display-3">Commitment core product</h1>
+        <p>This demo website demonstrates using JWT tokens for securing rest/api calls. The tokens are issued by Azure AD or USI</p>
         <p>Welcome user: </p>
         <p id="userdetails"> </p>
      <!--  <p><a class="btn btn-primary btn-lg" href="javascript:callRest()" role="button">Display Tokens&raquo;</a></p> -->
@@ -35,22 +40,50 @@
       <div class="row">
         <div class="col-md-6">
           <h2>Booking</h2>
-          <p id="booking" class="token"> </p>
+            <table id="booking">
+                <thead>
+                <tr>
+                    <th data-field="key"></th>
+                    <th data-field="value"></th>
+                </tr>
+                </thead>
+            </table>
         </div>
         <div class="col-md-6">
           <h2>Bill of Lading</h2>
-          <p id="bol" class="token"> </p>
+            <table id="bol">
+                <thead>
+                <tr>
+                    <th data-field="key"></th>
+                    <th data-field="value"></th>
+                </tr>
+                </thead>
+            </table>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-6">
           <h2>Finance</h2>
-          <p id="finance" class="token"> </p>
+            <table id="finance">
+                <thead>
+                <tr>
+                    <th data-field="key"></th>
+                    <th data-field="value"></th>
+                </tr>
+                </thead>
+            </table>
         </div>
         <div class="col-md-6">
           <h2>Admin</h2>
-          <p id="admin" class="token"> </p>
+            <table id="admin">
+                <thead>
+                <tr>
+                    <th data-field="key"></th>
+                    <th data-field="value"></th>
+                </tr>
+                </thead>
+            </table>
         </div>
       </div>
 
@@ -70,5 +103,7 @@
     <script src="dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="callrest.js"></script>
+    <script src="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.js"> </script>
   </body>
 </html>

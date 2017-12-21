@@ -6,95 +6,78 @@ var admXMLReq;
 var api_url = "http://api.ccp.apmoller.net:8888";
 
 
+
+function responseHandler(res) {
+    var data = [];
+    for (var key in res) {
+        data.push({
+            key: key,
+            value: res[key]
+        });
+    }
+    return data;
+}
+
+function callApi(element, url)
+{
+    var apiXMLReq = new XMLHttpRequest();
+    apiXMLReq.onreadystatechange = function() {
+        if (this.readyState == 4)
+        {
+            $(function () {
+                $(element).bootstrapTable({
+                    data: responseHandler(JSON.parse(apiXMLReq.responseText))
+                });
+            });
+            if (this.status == 200)
+            {
+                $(element).removeClass("noauthrest");
+                $(element).addClass("authrest");
+            }
+            else if (this.status == 403)
+            {
+                $(element).removeClass("authrest");
+                $(element).addClass("noauthrest");
+            }
+
+        }
+      };
+    apiXMLReq.open("GET", api_url + url , true );
+    apiXMLReq.setRequestHeader("Authorization", jwtb);
+    apiXMLReq.send(null);
+
+}
+
 function callRest()
 {
 
-//checkHash();
+    if (sessionStorage.id_token == null || sessionStorage.id_token.length == 0) {
 
-if (sessionStorage.usi_id_token == null || sessionStorage.usi_id_token.length == 0) {
+      window.location.href = "index.html";
+    }
 
-  window.location.href = "index.html";
-}
+    else{
 
-else{
+        jwtb="Bearer "+ sessionStorage.id_token;
+        callApi('#booking','/booking');
+        callApi('#bol','/bol');
+        callApi('#finance','/finance');
+        callApi('#admin','/admin');
 
-    jwtb="Bearer "+ sessionStorage.usi_id_token;
+        usrXMLReq = new XMLHttpRequest();
+        usrXMLReq.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("userdetails").innerHTML = this.responseText;
+              document.getElementById("userdetails").className='authrest'  
+            }
+            else if (this.readyState == 4 && this.status == 403) {
+              document.getElementById("userdetails").innerHTML = this.responseText;
+              document.getElementById("userdetails").className='noauthrest'  
+            }
+          };
+        usrXMLReq.open("GET", api_url+ "/userdetails", true );
+        usrXMLReq.setRequestHeader("Authorization", jwtb);
+        usrXMLReq.send(null);
 
-    bkgXMLReq = new XMLHttpRequest();
-    bkgXMLReq.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("booking").innerHTML = this.responseText;
-          document.getElementById("booking").className='authrest'  
-        }
-        else if (this.readyState == 4 && this.status == 403) {
-          document.getElementById("booking").innerHTML = this.responseText;
-          document.getElementById("booking").className='noauthrest'  
-        }
-      };
-    bkgXMLReq.open("GET", api_url + "/booking", true );
-    bkgXMLReq.setRequestHeader("Authorization", jwtb);
-    bkgXMLReq.send(null);
-
-    bolXMLReq = new XMLHttpRequest();
-    bolXMLReq.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("bol").innerHTML = this.responseText;
-          document.getElementById("bol").className='authrest'  
-        }
-        else if (this.readyState == 4 && this.status == 403) {
-          document.getElementById("bol").innerHTML = this.responseText;
-          document.getElementById("bol").className='noauthrest'  
-        }
-      };
-    bolXMLReq.open("GET", api_url+ "/bol", true );
-    bolXMLReq.setRequestHeader("Authorization", jwtb);
-    bolXMLReq.send(null);
-
-    finXMLReq = new XMLHttpRequest();
-    finXMLReq.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("finance").innerHTML = this.responseText;
-          document.getElementById("finance").className='authrest'  
-        }
-        else if (this.readyState == 4 && this.status == 403) {
-          document.getElementById("finance").innerHTML = this.responseText;
-          document.getElementById("finance").className='noauthrest'  
-        }
-      };
-    finXMLReq.open("GET", api_url + "/finance", true );
-    finXMLReq.setRequestHeader("Authorization", jwtb);
-    finXMLReq.send(null);
-
-    admXMLReq = new XMLHttpRequest();
-    admXMLReq.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("admin").innerHTML = this.responseText;
-          document.getElementById("admin").className='authrest'  
-        }
-        else if (this.readyState == 4 && this.status == 403) {
-          document.getElementById("admin").innerHTML = this.responseText;
-          document.getElementById("admin").className='noauthrest'  
-        }
-      };
-    admXMLReq.open("GET", api_url+ "/admin", true );
-    admXMLReq.setRequestHeader("Authorization", jwtb);
-    admXMLReq.send(null);
-
-
-    usrXMLReq = new XMLHttpRequest();
-    usrXMLReq.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("userdetails").innerHTML = this.responseText;
-          document.getElementById("userdetails").className='authrest'  
-        }
-        else if (this.readyState == 4 && this.status == 403) {
-          document.getElementById("userdetails").innerHTML = this.responseText;
-          document.getElementById("userdetails").className='noauthrest'  
-        }
-      };
-    usrXMLReq.open("GET", api_url+ "/userdetails", true );
-    usrXMLReq.setRequestHeader("Authorization", jwtb);
-    usrXMLReq.send(null);
-
-  }
+      }
 }

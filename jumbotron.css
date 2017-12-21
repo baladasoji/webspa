@@ -30,3 +30,16 @@ p.noauthrest
   font-family: courier;
   color:red;
 }
+
+table.authrest
+{
+  color:green;
+  word-wrap: break-word;
+  font-size: 12px;
+}
+table.noauthrest
+{
+  color:red;
+  word-wrap: break-word;
+  font-size: 12px;
+}
