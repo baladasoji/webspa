@@ -3,7 +3,7 @@ var bkgXMLReq;
 var bolXMLReq;
 var finXMLReq;
 var admXMLReq;
-var api_url = "http://ccp.dasoji.net:8888";
+var api_url = "http://api.ccp.dasoji.net";
 
 
 
