@@ -22,7 +22,7 @@ function store(){
 
     id_token = getURLParameter("id_token");
     if (id_token == null || id_token.length == 0){ 
-        document.getElementById("message").innerHTML = "Error obtaining token from USI will retry by redirecting to the index page ";
+        document.getElementById("message").innerHTML = "Error obtaining token from Provider will retry by redirecting to the index page ";
         setTimeout(function(){ 
             window.location.href = "index.html" ;
         }, 3000);  
